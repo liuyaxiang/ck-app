@@ -1,0 +1,25 @@
+{
+  "name": "ck-app-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuyaxiang/ck-app-store.git"
+  },
+  "author": "liuyaxiang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liuyaxiang/ck-app-store/issues"
+  },
+  "homepage": "https://github.com/liuyaxiang/ck-app-store#readme",
+  "dependencies": {
+    "busboy": "^0.2.14",
+    "element-ui": "^1.3.7",
+    "express": "^4.15.3",
+    "vue": "^2.3.4"
+  }
+}

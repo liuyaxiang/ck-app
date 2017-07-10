@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- 引入样式 -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="app">
+    <el-row :gutter="20">
+        <el-col :span="6" :offset="6">
+            <h1>ck-app-store</h1>
+            <el-input
+                type="textarea"
+                :autosize="{ minRows: 2, maxRows: 4}"
+                placeholder="请输入更新说明"
+                v-model="textarea_changelog">
+            </el-input>   
+            <div style="margin: 20px 0;"></div>         
+            <el-upload
+                class="upload-demo"
+                action="../api/v1/app"
+                name={{textarea_changelog}}
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :file-list="fileList">
+                <el-button size="small" type="primary">点击上传</el-button>
+                <div slot="tip" class="el-upload__tip">只能上传apk文件，命名规则：<名称>_<版本号>，例如：CK-MCU_v2.3</div>
+            </el-upload>           
+
+        </el-col>
+    </el-row>
+
+  </div>
+</body>
+  <!-- 先引入 Vue -->
+  <script src="vue.js"></script>
+  <!-- 引入组件库 -->
+  <script src="index.js"></script>
+    <script>
+        var Main = {
+            data() {
+            return {
+                fileList: [],
+                textarea_changelog: 'fix bugs'
+            };
+            },
+            methods: {
+            handleRemove(file, fileList) {
+                console.log(file, fileList);
+            },
+            handlePreview(file) {
+                console.log(file);
+            }
+            }
+        }
+        var Ctor = Vue.extend(Main)
+        new Ctor().$mount('#app')
+    </script>
+</html>
