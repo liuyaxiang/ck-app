@@ -1,60 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <!-- 引入样式 -->
-  <link rel="stylesheet" href="index.css">
+    <meta charset="utf-8">
+    <title>iview example</title>
+    <link rel="stylesheet" type="text/css" href="styles/iview.css">
+    <script type="text/javascript" src="vue.js"></script>
+    <script type="text/javascript" src="iview.min.js"></script>
 </head>
 <body>
-  <div id="app">
-    <el-row :gutter="20">
-        <el-col :span="6" :offset="6">
-            <h1>ck-app-store</h1>
-            <el-input
-                type="textarea"
-                :autosize="{ minRows: 2, maxRows: 4}"
-                placeholder="请输入更新说明"
-                v-model="textarea_changelog">
-            </el-input>   
-            <div style="margin: 20px 0;"></div>         
-            <el-upload
-                class="upload-demo"
-                action="../api/v1/app"
-                name={{textarea_changelog}}
-                :on-preview="handlePreview"
-                :on-remove="handleRemove"
-                :file-list="fileList">
-                <el-button size="small" type="primary">点击上传</el-button>
-                <div slot="tip" class="el-upload__tip">只能上传apk文件，命名规则：<名称>_<版本号>，例如：CK-MCU_v2.3</div>
-            </el-upload>           
-
-        </el-col>
-    </el-row>
-
-  </div>
-</body>
-  <!-- 先引入 Vue -->
-  <script src="vue.js"></script>
-  <!-- 引入组件库 -->
-  <script src="index.js"></script>
-    <script>
-        var Main = {
-            data() {
-            return {
-                fileList: [],
-                textarea_changelog: 'fix bugs'
-            };
-            },
-            methods: {
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
-            },
-            handlePreview(file) {
-                console.log(file);
-            }
+<div id="app">
+    <Row>
+        <i-col span="8" offset="8">
+            <h1 style="margin: 20px 0;">ck-app-store</h1>
+            <Card :bordered="true">
+                <p slot="title">更新APP操作</p>
+                <i-input v-model="textarea_changelog" type="textarea" :autosize="{minRows: 2}" placeholder="请输入更新说明"></i-input>
+                <Upload
+                    multiple
+                    type="drag"
+                    action="//jsonplaceholder.typicode.com/posts/">
+                    <div style="padding: 20px 0">
+                        <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+                        <p>点击或将文件拖拽到这里上传</p>
+                         <p>命名规则：<名称>_<版本号>，例如：CK-MCU_v2.3</p>
+                    </div>
+                </Upload>               
+            </Card>
+            <Card :bordered="true">
+                <p slot="title">历史版本</p>
+                <Tabs value="name1">
+                    <Tab-pane label="CK-MCU" name="name1">
+                        <Timeline>
+                            <Timeline-item>
+                                <p class="time">V1.0</p>
+                                <p class="content">Apple I 问世</p>
+                            </Timeline-item>
+                            <Timeline-item>
+                                <p class="time">V1.2</p>
+                                <p class="content">发布 Macintosh</p>
+                            </Timeline-item>
+                            <Timeline-item>
+                                <p class="time">V1.5</p>
+                                <p class="content">发布 iPhone</p>
+                            </Timeline-item>
+                            <Timeline-item>
+                                <p class="time">V2.0</p>
+                                <p class="content">发布 iPad</p>
+                            </Timeline-item>
+                            <Timeline-item>
+                                <p class="time">V2.3</p>
+                                <p class="content">史蒂夫·乔布斯去世</p>
+                            </Timeline-item>
+                        </Timeline>     
+                    </Tab-pane>
+                    <Tab-pane label="CK-LDC" name="name2">标签二的内容</Tab-pane>                    
+                </Tabs>             
+            </Card>
+        </i-col>        
+    </Row>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            visible: false
+        },
+        methods: {
+            show: function () {
+                this.visible = true;
             }
         }
-        var Ctor = Vue.extend(Main)
-        new Ctor().$mount('#app')
-    </script>
+    })
+    
+  </script>
+</body>
 </html>

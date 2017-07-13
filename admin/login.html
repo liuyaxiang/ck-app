@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>iview example</title>
+    <link rel="stylesheet" type="text/css" href="styles/iview.css">
+    <script type="text/javascript" src="vue.js"></script>
+    <script type="text/javascript" src="iview.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <Row>
+        <i-col span="8" offset="8">
+            <h1 style="margin: 20px 0;">ck-app-store</h1>
+            <Card :bordered="true">                
+                <i-input v-model="password">
+                    <span slot="prepend">管理员秘钥</span>
+                    <i-button slot="append" type="primary">进入</i-button>
+                </i-input>             
+            </Card>            
+        </i-col>        
+    </Row>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            visible: false,
+            password:""
+        },
+        methods: {
+            show: function () {
+                this.visible = true;
+            }
+        }
+    })
+    
+  </script>
+</body>
+</html>
